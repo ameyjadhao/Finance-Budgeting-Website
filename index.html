@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PaisaBachao!</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+:root{--blue:#168cf0;--line:#e8e8e8;--soft:#d9d9d9;--ink:#080808}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#fff;color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+a{color:inherit;text-decoration:none}
+.screen{min-height:100vh;background:#fff}
+#signup{position:relative;min-height:654px;overflow:hidden;padding:26px 5.5%}
+.brand-row{display:flex;align-items:center;justify-content:center;gap:18px;min-height:160px}
+.brand-logo{width:140px;height:165px;object-fit:contain}
+.brand-title{font-size:clamp(40px,7vw,70px);font-weight:700;letter-spacing:-2px;white-space:nowrap}
+.signup-box{width:min(430px,90%);margin:20px auto 0;text-align:center}
+.signup-box h2{font-size:17px;font-weight:700;margin:0 0 6px}
+.signup-box p{font-size:12px;margin-bottom:17px}
+.signup-box input{height:29px;border:1px solid #e2e2e2;border-radius:6px;font-size:14px}
+.black-btn{height:28px;background:#000;color:white;border:0;border-radius:6px;font-size:12px;width:100%;margin-top:10px}
+.continue{display:flex;align-items:center;gap:8px;color:#888;font-size:11px;margin:17px 0}
+.continue:before,.continue:after{content:"";height:1px;background:#eee;flex:1}
+.google-btn{border:0;background:#eee;border-radius:7px;font-size:11px;padding:6px 15px;min-width:96px}
+.google-g{font-weight:bold;font-size:17px;margin-right:12px;color:#4285f4}
+#lists{padding:0;background:#aaa;min-height:724px}
+.page-label{height:38px;padding:7px 20px;color:#333;font-size:16px}
+.dashboard-shell{display:flex;background:#fff;min-height:663px;margin:0 2.2% 22px 1.7%;border:0}
+.sidebar{width:182px;flex:0 0 182px;border:3px solid var(--blue);padding:20px 17px}
+.sidebar h2{font-size:16px;font-weight:700;margin:0 0 19px}
+.side-link{display:flex;align-items:center;gap:11px;font-size:12px;margin:0 0 13px}
+.side-dot{height:16px;width:16px;border-radius:50%;background:#ddd;display:inline-block;flex:none}
+.main-list{padding:49px 4.5% 28px 7px;flex:1;min-width:0}
+.toolbar{display:flex;align-items:center;gap:10px;margin:0 0 43px 30px}
+.search{width:278px;height:29px;border:1px solid #e3e3e3;border-radius:6px;padding:4px 10px;font-size:11px}
+.filter{border:1px solid #e3e3e3;background:white;border-radius:6px;padding:5px 11px;font-size:11px;color:#666}
+.view-switch{margin-left:auto;background:#f7f7f7;border-radius:8px;padding:4px 8px;font-size:16px;letter-spacing:7px}
+.section-head{display:flex;align-items:center;gap:12px;margin:0 15px 6px 0}
+.section-head h3{font-size:17px;font-weight:700;margin:0}
+.pill-action{border:0;border-radius:18px;background:#d9d9d9;font-weight:700;font-size:14px;padding:7px 25px;min-width:164px}
+.plus{font-size:22px;line-height:1}
+.list-panel{background:#d9d9d9;border-radius:12px;padding:8px 14px;margin-bottom:27px}
+.goal-row{background:#fff;border-radius:11px;padding:5px 15px;margin-bottom:8px;font-size:14px;min-height:25px;display:flex;align-items:center;gap:10px}
+.goal-row:last-child{margin-bottom:0}
+.goal-row strong{font-size:14px}
+.goal-row small{font-size:11px}
+.transaction-panel{padding:10px 14px}
+.transaction-table{background:#fff;border-radius:11px;padding:0 10px 8px}
+.transaction-table table{font-size:11px;margin:0}
+.transaction-table th{font-weight:400;padding:7px 8px}
+.transaction-table td{padding:10px 8px;white-space:nowrap}
+.rule-title{font-size:17px;font-weight:700;margin:0 0 7px 7px}
+.rule-copy{background:#d9d9d9;border-radius:11px;padding:8px 12px}
+.rule-copy div{background:white;border-radius:10px;padding:7px 8px;font-weight:700;font-size:15px;line-height:1.45}
+details.add-form{margin:0 0 10px auto;width:min(360px,100%);font-size:12px}
+details.add-form summary{cursor:pointer;list-style:none;text-align:right;color:#333;padding:5px}
+details.add-form summary::-webkit-details-marker{display:none}
+.form-fields{background:#f6f6f6;border:1px solid #ddd;border-radius:8px;padding:10px;display:grid;gap:7px}
+.form-fields input,.form-fields select{font-size:12px}
+.form-fields button{font-size:12px}
+#overview{background:#aaa;min-height:100vh;padding:0 4.2% 26px}
+.overview-label{height:56px;padding:7px 0;color:#333}
+.overview-shell{background:#fff;min-height:calc(100vh - 85px)}
+.topbar{height:45px;border-bottom:1px solid #eee;display:flex;align-items:center;padding:0 20px;gap:20px;font-size:14px}
+.back{font-size:30px;line-height:1;font-weight:300}
+.top-actions{margin-left:auto;display:flex;align-items:center;gap:12px}
+.top-actions span{background:#f4f4f4;border-radius:7px;padding:5px 12px}
+.share{background:#000!important;color:#fff;font-size:11px}
+.overview-content{padding:20px 5.4% 42px}
+.overview-search{display:flex;justify-content:flex-end;margin-bottom:18px}
+.overview-search input{width:278px;height:29px;border:1px solid #e3e3e3;border-radius:6px;padding:4px 10px;font-size:11px}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);border:3px solid var(--blue);margin-bottom:15px}
+.metric{padding:18px 16px;border-right:2px dotted var(--blue);min-height:118px}
+.metric:last-child{border-right:0}
+.metric b{font-size:11px}
+.metric strong{display:block;font-size:29px;margin:6px 0}
+.metric small{color:#888;font-size:11px}
+.chart-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:20px;margin-bottom:25px}
+.chart-card,.data-card{border:1px solid #e3e3e3;border-radius:6px;box-shadow:0 2px 6px #00000008;padding:18px 16px;background:white}
+.chart-card h3,.data-card h3{font-size:12px;font-weight:700;margin:0 0 15px}
+.line-chart{width:100%;height:230px;display:block}
+.pie-wrap{height:230px;display:flex;align-items:center;justify-content:center;position:relative}
+.pie{width:205px;height:205px;border-radius:50%;background:conic-gradient(#858585 0 33%,#a0a0a0 33% 51%,#b5b5b5 51% 76%,#cecece 76% 91%,#e7e7e7 91% 100%)}
+.pie-label{position:absolute;font-size:9px;color:#8990a0}
+.pie-label.l1{top:2px;left:53%}.pie-label.l2{top:48px;right:4%}.pie-label.l3{bottom:7px;right:25%}.pie-label.l4{bottom:25px;left:15%}.pie-label.l5{top:45px;left:5%}
+.bottom-grid{display:grid;grid-template-columns:.8fr 1.15fr;gap:20px}
+.data-card table{font-size:11px;margin:0}
+.data-card th{color:#888;font-weight:400}
+.data-card td,.data-card th{padding:7px 0;border-bottom:1px solid #eee}
+.data-card tr:last-child td{border-bottom:0}
+.bar-chart{height:255px;display:flex;align-items:flex-end;gap:13px;padding:0 5px 20px 45px;position:relative;border-bottom:1px solid #eee;background:repeating-linear-gradient(to bottom,transparent 0,transparent 36px,#eee 37px)}
+.bar{flex:1;background:#000;border-radius:3px 3px 0 0;min-width:8px}
+.bar-labels{display:flex;justify-content:space-around;padding-left:40px;color:#888;font-size:9px}
+.y-labels{position:absolute;left:0;top:0;bottom:20px;display:flex;flex-direction:column;justify-content:space-between;color:#888;font-size:9px}
+@media(max-width:760px){
+ .brand-row{justify-content:flex-start}.brand-logo{width:90px;height:115px}.brand-title{font-size:38px}
+ .signup-box{margin-top:10px}
+ .dashboard-shell{margin:0;display:block}.sidebar{width:100%;border-width:2px;padding:12px;display:flex;gap:15px;align-items:center;flex-wrap:wrap}.sidebar h2{width:100%;margin:0}.side-link{margin:0}.main-list{padding:20px 12px}.toolbar{margin:0 0 25px;flex-wrap:wrap}.search{width:55%}.view-switch{display:none}
+ .section-head{flex-wrap:wrap}.section-head h3{font-size:15px}.pill-action{min-width:130px;padding:6px 12px}
+ .transaction-table{overflow-x:auto}.transaction-table table{min-width:570px}
+ #overview{padding:0}.overview-label{padding-left:12px}.overview-content{padding:14px 12px}
+ .metrics{grid-template-columns:1fr}.metric{border-right:0;border-bottom:2px dotted var(--blue);min-height:85px}.metric:last-child{border-bottom:0}.metric strong{font-size:25px}
+ .chart-grid,.bottom-grid{grid-template-columns:1fr}.chart-card{min-width:0}.topbar{padding:0 10px}
+}
+</style>
+</head>
+<body>
+<section id="signup" class="screen">
+ <div class="brand-row">
+  <img class="brand-logo" src="data:image/jpeg;base64,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" alt="Paisa Bachao logo">
+  <div class="brand-title">PaisaBachao!</div>
+ </div>
+ <div class="signup-box">
+  <h2>Create an account</h2>
+  <p>Enter your email to sign up for this app</p>
+  <form action="#lists" method="get">
+   <input class="form-control" type="email" placeholder="email@domain.com" aria-label="Email">
+   <button class="black-btn" type="submit">Sign up with email</button>
+  </form>
+  <div class="continue">or continue with</div>
+  <a class="google-btn d-inline-block" href="#lists"><span class="google-g">G</span>Google</a>
+ </div>
+</section>
+
+<section id="lists" class="screen">
+ <div class="page-label">Second Page</div>
+ <div class="dashboard-shell">
+  <aside class="sidebar">
+   <h2>DashBoard</h2>
+   <a class="side-link" href="#goals"><i class="side-dot"></i>Goals</a>
+   <a class="side-link" href="#transactions"><i class="side-dot"></i>Transactions...</a>
+   <a class="side-link" href="#rule"><i class="side-dot"></i>50/30/20 Rule</a>
+   <a class="side-link" href="#overview"><i class="side-dot"></i>Dashboard</a>
+  </aside>
+  <main class="main-list">
+   <div class="toolbar">
+    <input class="search" type="search" placeholder="⌕   Search" aria-label="Search">
+    <button class="filter" type="button">▽ &nbsp;Filter</button>
+    <div class="view-switch">☷ ▦ ▢</div>
+   </div>
+   <section id="goals">
+    <div class="section-head"><h3>My Saving Goals! 🎯</h3><span class="plus">⊕</span><span class="spacer"></span><a href="#add-goal" class="pill-action text-center">Add Goals</a></div>
+    <details class="add-form" id="add-goal"><summary>＋ Create a goal</summary><div class="form-fields"><input class="form-control" placeholder="Goal name"><input class="form-control" type="number" placeholder="Target amount"><input class="form-control" type="number" placeholder="Current savings"><button class="btn btn-dark" type="button">Add to list</button><small>HTML-only demo: this form does not save or append entries.</small></div></details>
+    <div class="list-panel">
+     <div class="goal-row"><strong>New Laptop 💻</strong><small>₹30000 saved of ₹60000</small></div>
+     <div class="goal-row"><strong>Traveling ✈️</strong><small>₹20000 saved of ₹40000</small></div>
+     <div class="goal-row"><strong>Emergency Safety Net 🔒</strong><small>₹50000 saved of ₹70000</small></div>
+    </div>
+   </section>
+   <section id="transactions">
+    <div class="section-head"><h3>Recent Transactions 🤝</h3><span class="plus">⊕</span><span class="spacer"></span><a href="#add-transaction" class="pill-action text-center">Add Transactions</a></div>
+    <details class="add-form" id="add-transaction"><summary>＋ Create a transaction</summary><div class="form-fields"><input class="form-control" placeholder="Description"><input class="form-control" type="date"><select class="form-select"><option>Expense</option><option>Income</option></select><input class="form-control" type="number" placeholder="Amount"><button class="btn btn-dark" type="button">Add to list</button><small>HTML-only demo: this form does not save or append entries.</small></div></details>
+    <div class="list-panel transaction-panel">
+     <div class="transaction-table"><table class="table table-borderless align-middle">
+      <thead><tr><th>✥</th><th>#</th><th>Description</th><th>Date</th><th>Type</th><th>Amount</th><th>›</th></tr></thead>
+      <tbody>
+       <tr><td>⊕</td><td>Food Expenses</td><td>Food</td><td>21 Nov ’26</td><td>Expense</td><td>2100</td><td>›</td></tr>
+       <tr><td>⊕</td><td>Movies</td><td>Entertainment</td><td>20 Nov ’26</td><td>Expense</td><td>600</td><td>›</td></tr>
+       <tr><td>⊕</td><td>Freelancing</td><td>Income</td><td>18 Nov ’26</td><td>Income</td><td>1500</td><td>›</td></tr>
+      </tbody>
+     </table></div>
+    </div>
+   </section>
+   <section id="rule">
+    <h3 class="rule-title">50/30/20 Rule 💰</h3>
+    <div class="rule-copy"><div>The 50/30/20 rule is a budgeting method that divides your after-tax income into 50% for needs, 30% for wants, and 20% for savings and debt repayment.</div></div>
+   </section>
+  </main>
+ </div>
+</section>
+
+<section id="overview" class="screen">
+ <div class="overview-label">Third Page</div>
+ <div class="overview-shell">
+  <header class="topbar"><a class="back" href="#lists">‹</a><strong>PaisaBachao</strong><div class="top-actions"><span>•••</span><span class="share">Share</span><span style="color:#493b91;font-size:20px">♙</span><span>⌄</span></div></header>
+  <div class="overview-content">
+   <div class="overview-search"><input type="search" placeholder="⌕   Search..."></div>
+   <div class="metrics">
+    <div class="metric"><b>Salary</b><strong>₹45,678.90</strong><small>5% Increment</small></div>
+    <div class="metric"><b>EMI</b><strong>-₹2,405</strong><small>Per Month</small></div>
+    <div class="metric"><b>Savings</b><strong>₹10,353</strong><small>-8% month over month</small></div>
+   </div>
+   <div class="chart-grid">
+    <div class="chart-card"><h3>Portfolio Trajectory</h3>
+     <svg class="line-chart" viewBox="0 0 500 230" preserveAspectRatio="none" aria-label="Portfolio trajectory chart">
+      <g stroke="#e9e9e9" stroke-width="1"><path d="M0 12H500 M0 50H500 M0 88H500 M0 126H500 M0 164H500 M0 202H500"/></g>
+      <g fill="#888" font-size="10"><text x="0" y="10">$50,000</text><text x="0" y="48">$45,000</text><text x="0" y="86">$40,000</text><text x="0" y="124">$35,000</text><text x="0" y="162">$30,000</text><text x="0" y="200">$25,000</text></g>
+      <path d="M0 218 L18 218 L43 216 L86 210 L130 183 L161 169 L184 177 L219 158 L253 139 L286 119 L308 125 L351 82 L383 106 L411 61 L442 75 L470 12" fill="none" stroke="#000" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle cx="470" cy="12" r="5" fill="#000"/><circle cx="470" cy="12" r="17" fill="#aaa" opacity=".3"/>
+      <g fill="#888" font-size="10"><text x="0" y="229">23 Nov</text><text x="70" y="229">24</text><text x="142" y="229">25</text><text x="214" y="229">26</text><text x="286" y="229">27</text><text x="358" y="229">28</text><text x="430" y="229">29</text><text x="485" y="229">30</text></g>
+     </svg>
+    </div>
+    <div class="chart-card"><h3 class="text-center fw-normal">Total Monthly Expenses</h3>
+     <div class="pie-wrap"><div class="pie"></div><span class="pie-label l1">Misc</span><span class="pie-label l2">Shopping</span><span class="pie-label l3">Travel</span><span class="pie-label l4">Food</span><span class="pie-label l5">Investments</span></div>
+    </div>
+   </div>
+   <div class="bottom-grid">
+    <div class="data-card"><h3>Stocks</h3><table class="table table-borderless"><thead><tr><th>Source</th><th class="text-end">Sessions</th><th class="text-end">Change</th></tr></thead><tbody>
+     <tr><td>Google.com</td><td class="text-end">4321</td><td class="text-end">+84%</td></tr>
+     <tr><td>Meta.com</td><td class="text-end">4033</td><td class="text-end">-8%</td></tr>
+     <tr><td>X.com</td><td class="text-end">3128</td><td class="text-end">+2%</td></tr>
+     <tr><td>OpenAI</td><td class="text-end">2104</td><td class="text-end">+33%</td></tr>
+     <tr><td>Nvidia</td><td class="text-end">2003</td><td class="text-end">+30%</td></tr>
+     <tr><td>Persistent</td><td class="text-end">1894</td><td class="text-end">+15%</td></tr>
+     <tr><td>Qualcomm</td><td class="text-end">405</td><td class="text-end">-12%</td></tr>
+    </tbody></table></div>
+    <div class="data-card"><h3>Spendings</h3><div class="bar-chart">
+     <div class="y-labels"><span>₹8000</span><span>₹7000</span><span>₹6000</span><span>₹5000</span><span>₹4000</span><span>₹3000</span></div>
+     <div class="bar" style="height:44%"></div><div class="bar" style="height:53%"></div><div class="bar" style="height:44%"></div><div class="bar" style="height:40%"></div><div class="bar" style="height:60%"></div><div class="bar" style="height:95%"></div><div class="bar" style="height:62%"></div><div class="bar" style="height:78%"></div><div class="bar" style="height:55%"></div><div class="bar" style="height:47%"></div><div class="bar" style="height:40%"></div><div class="bar" style="height:7%"></div>
+    </div><div class="bar-labels"><span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span></div></div>
+   </div>
+  </div>
+ </div>
+</section>
+</body>
+</html>
